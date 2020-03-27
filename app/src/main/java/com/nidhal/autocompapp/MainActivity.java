@@ -30,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
             {"11", "17", "5.5", "10", "2", "10.25"}
     };
 
-    //3rd Version
-    //HashMap<String,String[]> NotesAll = new HashMap<>();
-
     AutoCompleteTextView autoSaisie;
 
     @Override
