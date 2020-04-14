@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,25 +50,29 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedStudent = ((TextView) view).getText().toString();
 
-                ArrayAdapter<String> adapter;
-
+                //ArrayAdapter<String> adapter;
+                MyAdapter adapter;
                 if (selectedStudent.equals("Sara")) {
-                    adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
-                            NotesSara);
+                    //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
+                      //      NotesSara);
+                    adapter = new MyAdapter(MainActivity.this, NotesSara);
 
                     //2nd Version
                     //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
                     //NotesAll[0]);
                 } else if (selectedStudent.equals("Samira")) {
-                    adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
-                            NotesSamira);
+                    //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
+                        //    NotesSamira);
+                    adapter = new MyAdapter(MainActivity.this, NotesSamira);
 
                     //2nd Version
                     //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
                     //NotesAll[1]);
                 } else {
-                    adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
-                            NotesSami);
+                    //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
+                           // NotesSami);
+
+                    adapter = new MyAdapter(MainActivity.this, NotesSami);
 
                     //2nd Version
                     //adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,
@@ -80,13 +85,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selectedTopic = allTopics[position];
-                        Double note = Double.parseDouble(((TextView) view).getText().toString());
+                        TextView txt = (TextView) view.findViewById(R.id.note);
+
+                        Double note = Double.parseDouble(txt.getText().toString());
                         if (note > 10)
                             Toast.makeText(getApplicationContext(), selectedTopic + ": Pass", Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(getApplicationContext(), selectedTopic + ": Fail", Toast.LENGTH_LONG).show();
                     }
                 });
+
+
 
             }
         });
